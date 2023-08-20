@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
@@ -25,7 +26,7 @@ export type NoteData = {
   markdown: string
   tags: Tag[]
 }
-type Tag={
+export type Tag={
   id:string
   label: string
 }
@@ -45,12 +46,15 @@ function App() {
       return [...prevNotes,{...data, id: uuidV4(),tagIds: tags.map(tag => tag.id)},]
   })
   }
+    function addTag(tag: Tag){
+      setTags(prev => [...prev, tag])
+    }
 
   return (
   <Container className="my-4">
   <Routes>  
   <Route path="/" element = {<h1>Home</h1>}/>
-  <Route path="/new" element = {<NewNote onSubmit={onCreateNote} />}/>
+  <Route path="/new" element = {<NewNote onSubmit={onCreateNote} onAddTag={addTag} availableTags={tags} />}/>
   <Route path="/:id">
    <Route index element={<h1>Show</h1>}/>
    <Route path="edit" element={<h1>edit</h1>}/>
