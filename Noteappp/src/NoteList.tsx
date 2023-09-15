@@ -67,7 +67,7 @@ export function NoteList({
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
             <Link to="/new">
-              <Button variant="primary">Create</Button>
+              <Button variant="success">Create</Button>
             </Link>
             <Button
               onClick={() => setEditTagsModalIsOpen(true)}
